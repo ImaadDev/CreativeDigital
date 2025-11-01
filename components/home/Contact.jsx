@@ -1,0 +1,141 @@
+'use client';
+
+import React, { useState } from 'react';
+import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import ScrollBasedAnimation from '../ScrollBasedAnimation';
+
+const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+  };
+
+  return (
+    <section className="flex flex-col lg:flex-row items-stretch min-h-screen max-w-[1400px] mx-auto bg-white relative z-30">
+
+      {/* Left Column – Contact Info */}
+      <div className="lg:w-1/2 w-full bg-black text-white flex flex-col justify-center px-8 md:px-12 lg:px-16 xl:px-20 py-16">
+        <ScrollBasedAnimation direction="right" offset={50}>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-10 leading-tight text-[#6EFF33]">
+            GET IN TOUCH
+          </h2>
+        </ScrollBasedAnimation>
+
+        <ScrollBasedAnimation direction="left" offset={50}>
+          <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-10 font-light">
+            Have a question or project idea? Let’s talk — we’d love to help you make it happen.
+          </p>
+        </ScrollBasedAnimation>
+
+        <div className="space-y-6">
+          <ScrollBasedAnimation direction="up" offset={50}>
+            <div className="flex items-center gap-4">
+              <div className="p-3 border border-[#6EFF33] rounded-full">
+                <Mail className="w-5 h-5 text-[#6EFF33]" />
+              </div>
+              <a
+                href="mailto:hello@creativedigital.com"
+                className="text-gray-200 hover:text-[#6EFF33] transition-colors"
+              >
+                hello@creativedigital.com
+              </a>
+            </div>
+          </ScrollBasedAnimation>
+
+          <ScrollBasedAnimation direction="up" offset={50} delay={0.1}>
+            <div className="flex items-center gap-4">
+              <div className="p-3 border border-[#6EFF33] rounded-full">
+                <Phone className="w-5 h-5 text-[#6EFF33]" />
+              </div>
+              <a
+                href="tel:+15551234567"
+                className="text-gray-200 hover:text-[#6EFF33] transition-colors"
+              >
+                +1 (555) 123-4567
+              </a>
+            </div>
+          </ScrollBasedAnimation>
+
+          <ScrollBasedAnimation direction="up" offset={50} delay={0.2}>
+            <div className="flex items-center gap-4">
+              <div className="p-3 border border-[#6EFF33] rounded-full">
+                <MapPin className="w-5 h-5 text-[#6EFF33]" />
+              </div>
+              <p className="text-gray-200">
+                123 Creative Street, Design City, DC 12345
+              </p>
+            </div>
+          </ScrollBasedAnimation>
+        </div>
+      </div>
+
+      {/* Right Column – Contact Form */}
+      <div className="lg:w-1/2 w-full bg-primary flex flex-col justify-center px-8 md:px-12 lg:px-16 xl:px-20 py-16">
+        <ScrollBasedAnimation direction="left" offset={50}>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-black mb-10 leading-tight">
+            CONTACT FORM
+          </h2>
+        </ScrollBasedAnimation>
+
+        <ScrollBasedAnimation direction="left" offset={50}>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full border border-gray-300 focus:border-[#6EFF33] px-5 py-3 text-base outline-none transition-all duration-200"
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full border border-gray-300 focus:border-[#6EFF33] px-5 py-3 text-base outline-none transition-all duration-200"
+              required
+            />
+            <input
+              type="text"
+              name="subject"
+              placeholder="Subject"
+              value={formData.subject}
+              onChange={handleChange}
+              className="w-full border border-gray-300 focus:border-[#6EFF33] px-5 py-3 text-base outline-none transition-all duration-200"
+            />
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              value={formData.message}
+              onChange={handleChange}
+              rows={5}
+              className="w-full border border-gray-300 focus:border-[#6EFF33] px-5 py-3 text-base outline-none resize-none transition-all duration-200"
+              required
+            ></textarea>
+            <button
+              type="submit"
+              className="bg-[#6EFF33] text-black px-8 py-4 font-semibold text-lg hover:bg-[#5AE02B] transition-all duration-200 flex items-center justify-center gap-2"
+            >
+              <Send className="w-5 h-5" />
+              Send Message
+            </button>
+          </form>
+        </ScrollBasedAnimation>
+      </div>
+    </section>
+  );
+};
+
+export default Contact;
