@@ -29,7 +29,10 @@ const ScrollBasedAnimation = ({
         if (entry.isIntersecting) {
           controls.start("visible");
         } else {
-          controls.start("hidden");
+          // Only animate to hidden if component is still mounted
+          if (isMounted) {
+            controls.start("hidden");
+          }
         }
       },
       { threshold }
