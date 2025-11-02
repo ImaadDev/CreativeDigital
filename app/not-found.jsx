@@ -1,42 +1,106 @@
 'use client';
 import React from 'react';
+import Link from 'next/link';
 import ScrollBasedAnimation from '../components/ScrollBasedAnimation';
 
 const NotFound = () => {
   return (
-    <section className="relative w-full h-[700px] overflow-hidden text-white bg-black">
+    <section className="relative w-full min-h-screen bg-secondary overflow-hidden">
+      
+      {/* Geometric Background Elements */}
+      <div className="absolute inset-0">
+        {/* Large geometric shapes */}
+        <div className="absolute top-20 left-10 w-32 h-32 bg-primary transform rotate-45 opacity-10"></div>
+        <div className="absolute top-40 right-20 w-24 h-24 bg-accent opacity-20"></div>
+        <div className="absolute bottom-32 left-1/4 w-16 h-16 bg-primary opacity-15"></div>
+        <div className="absolute bottom-20 right-1/3 w-20 h-20 bg-accent transform rotate-12 opacity-25"></div>
+        
+        {/* Grid pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="grid grid-cols-12 gap-8 h-full w-full p-8">
+            {Array.from({ length: 48 }).map((_, i) => (
+              <div key={i} className="border border-primary"></div>
+            ))}
+          </div>
+        </div>
+      </div>
 
-      {/* Content */}
-      <div className="relative z-20 flex flex-col justify-center items-center md:items-start h-full px-6 md:px-12 py-20 md:py-0 text-center md:text-left">
-
-        {/* Heading */}
+      {/* Main Content */}
+      <div className="relative z-10 flex flex-col justify-center items-center min-h-screen px-6 py-20 text-center">
+        
+        {/* Large 404 Number */}
         <ScrollBasedAnimation direction="up" offset={70} delay={0}>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight max-w-3xl md:max-w-4xl">
-            404 <span className="text-accent">Not Found</span>
-          </h1>
+          <div className="mb-8">
+            <h1 className="text-[12rem] sm:text-[16rem] md:text-[20rem] lg:text-[24rem] font-bold text-primary leading-none tracking-tighter">
+              404
+            </h1>
+            <div className="w-full h-1 bg-accent mt-4"></div>
+          </div>
         </ScrollBasedAnimation>
 
-        {/* Subheading */}
+        {/* Error Message */}
         <ScrollBasedAnimation direction="up" offset={70} delay={0.2}>
-          <p className="text-lg sm:text-xl md:text-2xl max-w-3xl mb-4 md:mb-6 opacity-90">
-            Oops! The page you're looking for doesn't exist.
-          </p>
-          <p className="text-md sm:text-lg md:text-xl max-w-3xl text-gray-300 leading-relaxed">
-            It seems you've ventured into uncharted territory. Let's get you back on track.
-          </p>
+          <div className="max-w-4xl mx-auto mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6 leading-tight">
+              PAGE <span className="text-accent">NOT FOUND</span>
+            </h2>
+            <p className="text-lg sm:text-xl md:text-2xl text-primary opacity-70 leading-relaxed max-w-2xl mx-auto">
+              The page you're looking for has been moved, deleted, or never existed.
+            </p>
+          </div>
         </ScrollBasedAnimation>
 
-        {/* Call to Action */}
+        {/* Navigation Options */}
         <ScrollBasedAnimation direction="up" offset={70} delay={0.4}>
-          <a
-            href="/"
-            className="inline-block bg-accent text-white px-8 py-3 rounded-lg font-semibold text-lg hover:bg-accent-dark transition-colors duration-300"
-          >
-            Go Home
-          </a>
+          <div className="flex flex-col sm:flex-row gap-6 items-center justify-center">
+            <Link 
+              href="/"
+              className="bg-primary text-secondary px-12 py-4 font-bold text-lg uppercase tracking-wider border-2 border-primary hover:bg-transparent hover:text-primary transition-all duration-300 transform hover:scale-105"
+            >
+              Go Home
+            </Link>
+            <Link 
+              href="/contact"
+              className="bg-accent text-secondary px-12 py-4 font-bold text-lg uppercase tracking-wider border-2 border-accent hover:bg-transparent hover:text-accent transition-all duration-300 transform hover:scale-105"
+            >
+              Contact Us
+            </Link>
+          </div>
+        </ScrollBasedAnimation>
+
+        {/* Breadcrumb Navigation */}
+        <ScrollBasedAnimation direction="up" offset={70} delay={0.6}>
+          <div className="mt-16 flex flex-wrap justify-center gap-8 text-primary opacity-60">
+            <Link href="/" className="hover:text-accent transition-colors duration-300 font-medium">
+              HOME
+            </Link>
+            <span>|</span>
+            <Link href="/about" className="hover:text-accent transition-colors duration-300 font-medium">
+              ABOUT
+            </Link>
+            <span>|</span>
+            <Link href="/services" className="hover:text-accent transition-colors duration-300 font-medium">
+              SERVICES
+            </Link>
+            <span>|</span>
+            <Link href="/work" className="hover:text-accent transition-colors duration-300 font-medium">
+              WORK
+            </Link>
+            <span>|</span>
+            <Link href="/blogs" className="hover:text-accent transition-colors duration-300 font-medium">
+              BLOGS
+            </Link>
+          </div>
         </ScrollBasedAnimation>
 
       </div>
+
+      {/* Bottom Accent Line */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <div className="h-2 bg-accent"></div>
+        <div className="h-1 bg-secondary"></div>
+      </div>
+
     </section>
   );
 };
