@@ -7,7 +7,7 @@ const CTASection = () => {
   return (
     <section
       id="cta"
-      className="w-full bg-black/50 relative overflow-hidden bg-gradient-to-r from-accent to-accent/80 text-primary px-6 py-32 flex flex-col items-center text-center"
+      className="w-full bg-black/70 relative overflow-hidden bg-gradient-to-r from-accent to-accent/80 text-primary px-6 py-32 flex flex-col items-center text-center"
     >
   
       <div className="relative z-10 max-w-4xl mx-auto">

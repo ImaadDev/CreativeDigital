@@ -21,9 +21,31 @@ const Contact = () => {
   };
 
   return (
-    <section className="flex flex-col lg:flex-row items-stretch min-h-screen max-w-[1400px] mx-auto bg-white relative z-30">
+    <section className=" items-stretch min-h-screen max-w-[1400px] mx-auto bg-white relative z-30">
 
-      {/* Left Column – Contact Info */}
+      {/* Header */}
+      <div className="text-center w-full px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20 py-12 md:py-16 lg:py-20 bg-black">
+        <ScrollBasedAnimation direction="up" offset={50}>
+          <span className="text-white text-sm sm:text-base font-bold tracking-widest uppercase mb-2 inline-block">
+            Contact Us
+          </span>
+        </ScrollBasedAnimation>
+
+        <ScrollBasedAnimation direction="up" offset={50} delay={0.1}>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white tracking-tight leading-tight">
+            Let's Start a Conversation
+          </h1>
+        </ScrollBasedAnimation>
+
+        <ScrollBasedAnimation direction="up" offset={50} delay={0.2}>
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-2xl lg:max-w-3xl mx-auto mt-4 px-4">
+            Ready to bring your ideas to life? Get in touch and let's create something amazing together.
+          </p>
+        </ScrollBasedAnimation>
+      </div>
+
+<div className='flex flex-col md:flex-row items-stretch min-h-screen max-w-[1400px] mx-auto bg-white relative z-30'>
+   {/* Left Column – Contact Info */}
       <div className="lg:w-1/2 w-full bg-black text-white flex flex-col justify-center px-8 md:px-12 lg:px-16 xl:px-20 py-16">
         <ScrollBasedAnimation direction="right" offset={50}>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-10 leading-tight text-[#6EFF33]">
@@ -134,6 +156,8 @@ const Contact = () => {
           </form>
         </ScrollBasedAnimation>
       </div>
+</div>
+     
     </section>
   );
 };

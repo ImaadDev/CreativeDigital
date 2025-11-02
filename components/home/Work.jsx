@@ -1,45 +1,12 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import Slider from 'react-slick';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import ScrollBasedAnimation from '../ScrollBasedAnimation';
-
-// Sample projects
-const projects = [
-  {
-    id: 1,
-    title: 'Brand Identity',
-    thumbnail:
-      'https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=800&q=80',
-    gallery: [
-      'https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80',
-    ],
-  },
-  {
-    id: 2,
-    title: 'Digital Campaign',
-    thumbnail:
-      'https://images.unsplash.com/photo-1593642532973-d31b6557fa68?auto=format&fit=crop&w=800&q=80',
-    gallery: [
-      'https://images.unsplash.com/photo-1522199710521-72d69614c702?auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80',
-    ],
-  },
-  {
-    id: 3,
-    title: 'Web Design',
-    thumbnail:
-      'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80',
-    gallery: [
-      'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80',
-    ],
-  },
-];
+import { client } from '../../sanity/lib/client';
 
 // Custom Arrow Components
 const NextArrow = ({ onClick }) => (
@@ -61,6 +28,7 @@ const PrevArrow = ({ onClick }) => (
 );
 
 const Work = () => {
+  const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
 
   const closeGallery = () => setSelectedProject(null);
@@ -72,6 +40,24 @@ const Work = () => {
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
+  }, []);
+
+  // 🔹 Fetch projects from Sanity (limit to 3)
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const data = await client.fetch(`*[_type == "work"][0...3]{
+          _id,
+          title,
+          "thumbnail": thumbnail.asset->url,
+          "gallery": gallery[].asset->url
+        }`);
+        setProjects(data);
+      } catch (err) {
+        console.error('Failed to fetch projects:', err);
+      }
+    };
+    fetchProjects();
   }, []);
 
   const sliderSettings = {
@@ -96,7 +82,7 @@ const Work = () => {
   };
 
   return (
-    <section className="py-20 bg-black/50 relative z-30 max-w-[1400px] mx-auto">
+    <section className="py-20 bg-black relative z-30 max-w-[1400px] mx-auto">
       <div className="px-8 md:px-12 lg:px-16 xl:px-20">
        {/* Heading */}
 <ScrollBasedAnimation direction="up" offset={80}>
@@ -114,7 +100,7 @@ const Work = () => {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {projects.map((project, index) => (
-            <ScrollBasedAnimation key={project.id} direction="up" offset={80} delay={index * 0.1}>
+            <ScrollBasedAnimation key={project._id} direction="up" offset={80} delay={index * 0.1}>
               <div
                 onClick={() => setSelectedProject(project)}
                 className="group relative cursor-pointer overflow-hidden bg-black shadow-lg"
@@ -135,6 +121,18 @@ const Work = () => {
             </ScrollBasedAnimation>
           ))}
         </div>
+
+        {/* View All Button */}
+        <ScrollBasedAnimation direction="up" offset={50} delay={0.3}>
+          <div className="text-center mt-12">
+            <Link
+              href="/work"
+              className="inline-block bg-accent text-black font-semibold py-3 px-8 hover:bg-green-400 transition-colors duration-300 text-lg"
+            >
+              View All Work
+            </Link>
+          </div>
+        </ScrollBasedAnimation>
       </div>
 
       {/* Fullscreen Gallery Modal */}
