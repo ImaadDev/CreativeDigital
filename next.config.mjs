@@ -2,11 +2,13 @@
 const nextConfig = {
   reactCompiler: true,
   images: {
-    domains: ['images.unsplash.com',
+    domains: [
+      'images.unsplash.com',
       'res.cloudinary.com',
-      'cdn.sanity.io'
-    ], // Add any external image domains here
+      'cdn.sanity.io',
+    ],
   },
+
 };
 
 export default nextConfig;

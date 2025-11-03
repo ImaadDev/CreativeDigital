@@ -22,6 +22,21 @@ body {
   font-family: Montserrat, Helvetica, sans-serif;
 }
 
+/* RTL Support */
+[dir="rtl"] body {
+  direction: rtl;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+[dir="rtl"] .navbar-container {
+  direction: ltr; /* Keep navbar layout consistent */
+}
+
+[dir="rtl"] * {
+  box-sizing: border-box;
+}
+
 /* Convenience classes for background colors */
 .bg-primary { background-color: var(--color-primary); }
 .bg-secondary { background-color: var(--color-secondary); }

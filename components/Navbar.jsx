@@ -4,28 +4,28 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import ScrollBasedAnimation from '../components/ScrollBasedAnimation';
+import Image from 'next/image';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useTranslation } from 'react-i18next';
 
 const Navbar = () => {
+  const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  
-
   const links = [
-        { label: 'HOME', href: '/' },
-    { label: 'ABOUT', href: '/about' },
-    { label: 'SERVICES', href: '/services' },
-    { label: 'OUR WORK', href: '/work' },
-        { label: 'BLOGS', href: '/blogs' },
+        { label: t('home'), href: '/' },
+    { label: t('about'), href: '/about' },
+    { label: t('services'), href: '/services' },
+    { label: t('ourWork'), href: '/work' },
+        { label: t('blogs'), href: '/blogs' },
 
-    { label: 'CONTACT', href: '/contact' },
-
-    { label: 'العربية', href: '/ar' },
+    { label: t('contact'), href: '/contact' },
   ];
 
   return (
     <nav
-      className='relative top-0 left-0 w-full z-50 transition-all duration-500 bg-black/50'
+      className='navbar-container relative top-0 left-0 w-full z-50 transition-all duration-500 bg-black/50'
     >
       <div className="max-w-7xl mx-auto py-2 px-4 md:px-6">
         <div className="flex justify-between items-center h-20 lg:h-24">
@@ -33,9 +33,11 @@ const Navbar = () => {
 <ScrollBasedAnimation direction="up" offset={50} delay={0}>
   <Link href="/" className="flex items-center gap-3 leading-none group">
     {/* Logo Image */}
-    <img
+    <Image
       src="/logo.png" // replace with your image path or URL
       alt="Logo"
+      width={160}
+      height={160}
       className="w-25 h-25 md:w-40 md:h-40 object-contain"
     />
   </Link>
@@ -55,7 +57,10 @@ const Navbar = () => {
                   <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#6EFF33] transition-all group-hover:w-full"></span>
                 </Link>
               ))}
+              <LanguageSwitcher />
+
             </div>
+          
           </ScrollBasedAnimation>
 
           {/* ---------- Mobile Menu Button ---------- */}
@@ -91,6 +96,15 @@ const Navbar = () => {
             </Link>
           </ScrollBasedAnimation>
         ))}
+
+        {/* Language Switcher in Mobile Menu */}
+        <ScrollBasedAnimation
+          direction="right"
+          offset={20}
+          delay={links.length * 0.1}
+        >
+          <LanguageSwitcher isMobile={true} />
+        </ScrollBasedAnimation>
 
         {/* Bottom Accent */}
         <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#6EFF33] to-transparent"></div>

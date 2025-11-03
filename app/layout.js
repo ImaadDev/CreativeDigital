@@ -3,8 +3,6 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-
-
 const montserrat = Montserrat({
   weight: ["400", "700"],
   subsets: ["latin"],
@@ -17,13 +15,15 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  // You can later make this dynamic (from cookie, user choice, etc.)
+  const locale = "en"; // default language
+  const dir = locale === "ar" ? "rtl" : "ltr";
+
   return (
-    <html lang="en">
-      <body
-        className={`${montserrat.variable} antialiased`}
-      >
+    <html lang={locale} dir={dir}>
+      <body className={`${montserrat.variable} antialiased`}>
         <Navbar />
-        {children}
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

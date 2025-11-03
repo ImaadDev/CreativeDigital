@@ -1,8 +1,12 @@
 'use client';
 import React from 'react';
 import ScrollBasedAnimation from '../ScrollBasedAnimation';
+import { useTranslation } from 'react-i18next';
+
 
 const Hero = () => {
+const { t, i18n } = useTranslation();
+
   return (
     <section className="relative w-full h-[700px] overflow-hidden text-white">
 
@@ -25,17 +29,17 @@ const Hero = () => {
         {/* Heading */}
         <ScrollBasedAnimation direction="up" offset={70} delay={0}>
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight max-w-3xl md:max-w-4xl">
-            Be <span className="text-accent">Everywhere</span>
+            {t("be")} <span className="text-accent">{t("everywhere")}</span>
           </h1>
         </ScrollBasedAnimation>
 
         {/* Subheading */}
         <ScrollBasedAnimation direction="up" offset={70} delay={0.2}>
           <p className="text-lg sm:text-xl md:text-2xl max-w-3xl mb-4 md:mb-6 opacity-90">
-            We craft digital experiences that help your brand stand out and reach your audience wherever they are.
+            {t("heroSubheading1")}
           </p>
           <p className="text-md sm:text-lg md:text-xl max-w-3xl text-gray-300 leading-relaxed">
-            From innovative digital marketing strategies to seamless user experiences, we ensure your brand makes a meaningful impact and drives measurable growth.
+            {t("heroSubheading2")}
           </p>
         </ScrollBasedAnimation>
 
