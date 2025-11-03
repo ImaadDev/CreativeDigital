@@ -25,23 +25,21 @@ body {
 /* RTL Support */
 [dir="rtl"] body {
   direction: rtl;
-  width: 100vw;
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
 }
 
 [dir="rtl"] .navbar-container {
   direction: ltr; /* Keep navbar layout consistent */
 }
 
-[dir="rtl"] * {
-  box-sizing: border-box;
+/* RTL/LTR utility classes */
+.RTL {
+  direction: rtl;
+  text-align: right;
 }
 
-[dir="rtl"] section {
-  padding-left: 0;
-  padding-right: 0;
+.LTR {
+  direction: ltr;
+  text-align: left;
 }
 
 /* Convenience classes for background colors */

@@ -4,14 +4,12 @@ import ScrollBasedAnimation from '../ScrollBasedAnimation';
 import { useTranslation } from 'react-i18next';
 
 const Hero = () => {
-  const { t, i18n } = useTranslation();
-  const isRTL = i18n.language === 'ar';
+const { t, i18n } = useTranslation();
+const isRTL = i18n.language === 'ar';
 
   return (
     <section
-      className={`relative w-full h-[700px] overflow-hidden text-white ${
-        isRTL ? 'rtl' : 'ltr'
-      }`}
+      className={`relative w-full h-[700px] overflow-hidden text-primary`}
     >
       {/* Fixed Video Background */}
       <video
@@ -29,7 +27,7 @@ const Hero = () => {
       {/* Content */}
       <div
         className={`relative z-20 flex flex-col justify-center items-center h-full px-6 md:px-12 py-20 md:py-0 text-center transition-all duration-300
-        ${isRTL ? 'md:items-end md:text-right' : 'md:items-start md:text-left'}`}
+        ${isRTL ? 'RTL' : 'LTR'}`}
       >
         {/* Heading */}
         <ScrollBasedAnimation direction="up" offset={70} delay={0}>
