@@ -6,8 +6,11 @@ import ScrollBasedAnimation from '../ScrollBasedAnimation';
 import { client } from '../../sanity/lib/client';
 import { groq } from 'next-sanity'; // ✅ Import groq for the query
 import { categoryTitles } from '../../utils/categories';
+import { useTranslation } from 'react-i18next';
+
 
 const BlogContent = () => {
+  const { t } = useTranslation();
   const [blogs, setBlogs] = useState([]);
 
   // 🔹 Fetch blogs from Sanity
@@ -59,10 +62,11 @@ const BlogContent = () => {
       <ScrollBasedAnimation direction="up" offset={50}>
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-            Latest <span className="text-accent">Blog Posts</span>
+            {t("latest")} <span className="text-accent">{t("blog-post")}</span>
           </h2>
           <p className="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto">
-            Insights, tips, and stories from the world of digital innovation
+            {t("blogDescription")}
+           
           </p>
         </div>
       </ScrollBasedAnimation>
@@ -104,7 +108,7 @@ const BlogContent = () => {
                     href={`/blogs/${blog.slug?.current}`}
                     className="text-accent hover:text-green-400 font-semibold transition-colors duration-200"
                   >
-                    Read More →
+                    {t("read-more")} →
                   </Link>
                 </div>
               </div>

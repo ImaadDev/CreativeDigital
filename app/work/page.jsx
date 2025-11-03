@@ -6,6 +6,7 @@ import Slider from 'react-slick';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import ScrollBasedAnimation from '../../components/ScrollBasedAnimation';
 import WorkHero from '../../components/work/WorkHero';
+import Loading from '../../components/Loading';
 import { client } from '../../sanity/lib/client';
 import { urlFor } from '../../sanity/lib/image';
 
@@ -24,6 +25,7 @@ const PrevArrow = ({ onClick }) => (
 const Work = () => {
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const closeGallery = () => setSelectedProject(null);
 
@@ -46,8 +48,10 @@ const Work = () => {
           "gallery": gallery[].asset->url
         }`);
         setProjects(data);
+        setTimeout(() => setIsLoading(false), 1200); // 1.2 seconds loading
       } catch (err) {
         console.error('Failed to fetch projects:', err);
+        setIsLoading(false);
       }
     };
     fetchProjects();
@@ -68,7 +72,11 @@ const Work = () => {
     customPaging: () => <div className="w-3 h-3 rounded-full bg-gray-400 hover:bg-[#6EFF33] transition-all" />,
   };
 
-  if (!projects.length) return <p className="text-white text-center py-20">Loading projects...</p>;
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (!projects.length) return <p className="text-white text-center py-20">No projects found.</p>;
 
   return (
     <>

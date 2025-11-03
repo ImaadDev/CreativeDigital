@@ -119,7 +119,7 @@ const Contact = () => {
               placeholder={t("yourName")}
               value={formData.name}
               onChange={handleChange}
-              className="w-full border border-gray-300 focus:border-[#6EFF33] px-5 py-3 text-base outline-none transition-all duration-200"
+              className="w-full border text-secondary border-gray-300 focus:border-[#6EFF33] px-5 py-3 text-base outline-none transition-all duration-200"
               required
             />
             <input
@@ -128,7 +128,7 @@ const Contact = () => {
               placeholder={t("yourEmail")}
               value={formData.email}
               onChange={handleChange}
-              className="w-full border border-gray-300 focus:border-[#6EFF33] px-5 py-3 text-base outline-none transition-all duration-200"
+              className="w-full border text-secondary  border-gray-300 focus:border-[#6EFF33] px-5 py-3 text-base outline-none transition-all duration-200"
               required
             />
             <input
@@ -137,7 +137,7 @@ const Contact = () => {
               placeholder={t("subject")}
               value={formData.subject}
               onChange={handleChange}
-              className="w-full border border-gray-300 focus:border-[#6EFF33] px-5 py-3 text-base outline-none transition-all duration-200"
+              className="w-full border text-secondary  border-gray-300 focus:border-[#6EFF33] px-5 py-3 text-base outline-none transition-all duration-200"
             />
             <textarea
               name="message"
@@ -145,7 +145,7 @@ const Contact = () => {
               value={formData.message}
               onChange={handleChange}
               rows={5}
-              className="w-full border border-gray-300 focus:border-[#6EFF33] px-5 py-3 text-base outline-none resize-none transition-all duration-200"
+              className="w-full border text-secondary  border-gray-300 focus:border-[#6EFF33] px-5 py-3 text-base outline-none resize-none transition-all duration-200"
               required
             ></textarea>
             <button

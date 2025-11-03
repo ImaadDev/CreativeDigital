@@ -48,12 +48,12 @@ const Footer = () => {
             <h3 className="text-lg font-semibold text-accent mb-6">{t("quickLinks")}</h3>
             <nav className="flex flex-col gap-3">
               {[
-                { name: 'Home', href: '/' },
-                { name: 'About', href: '/about' },
-                { name: 'Services', href: '/services' },
-                { name: 'Work', href: '/work' },
-                { name: 'Blogs', href: '/blogs' },
-                { name: 'Contact', href: '/contact' }
+                { name: t("home"), href: '/' },
+                { name: t('about'), href: '/about' },
+                { name: t('nav-service'), href: '/services' },
+                { name: t('nav-ourWork'), href: '/work' },
+                { name: t('blogs'), href: '/blogs' },
+                { name: t('contact'), href: '/contact' }
               ].map((item) => (
                 <Link
                   key={item.name}

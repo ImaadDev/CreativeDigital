@@ -2,21 +2,24 @@
 import React from 'react';
 import ScrollBasedAnimation from '../ScrollBasedAnimation';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 
 const CTAViewWork = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="bg-black/80 relative py-20 w-full">
       <ScrollBasedAnimation direction="up" offset={50}>
         <div className="max-w-6xl mx-auto text-center px-6 md:px-12">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Ready to See What We Can Do?
+            {t("readyToSee")}
           </h2>
           <p className="text-gray-300 text-lg md:text-xl mb-8">
-            Explore our portfolio and discover how CreativeDigital brings ideas to life.
+            {t("readyToSeeDesc")}
           </p>
           <Link href="/work">
             <button className="bg-accent hover:bg-accent/90 text-black font-semibold py-3 px-8 transition-all duration-300 transform hover:scale-105">
-              View Our Work
+              {t("viewOurWork")}
             </button>
           </Link>
         </div>

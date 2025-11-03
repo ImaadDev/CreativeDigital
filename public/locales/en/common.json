@@ -9,6 +9,7 @@
   "about": "ABOUT",
   "nav-service": "SERVICES",
   "nav-ourWork": "OUR WORK",
+  "navWork": "OUR WORK",
   "blogs": "BLOGS",
   "contact": "CONTACT",
   "ourStory": "OUR STORY",
@@ -81,5 +82,17 @@
   "servicesDescription": "Crafting digital solutions that drive growth and elevate your brand.",
   "ourWork": "Our Work",
   "workHeroDesc1": "Crafting digital experiences that blend creativity, strategy, and impact.",
-  "workHeroDesc2": "See how we bring brands to life through innovative design and cutting-edge technology."
+  "workHeroDesc2": "See how we bring brands to life through innovative design and cutting-edge technology.",
+  "ourBlog": "Our Blog",
+  "blogHeroDesc1": "Insights and innovations from CreativeDigital.",
+  "blogHeroDesc2": "Stay updated with the latest trends, tips, and stories from the world of digital transformation.",
+  "latest": "Latest",
+  "blog-post": "Blog Posts",
+  "blogDescription": "Insights and innovations from CreativeDigital. Stay updated with the latest trends, tips, and stories from the world of digital transformation.",
+  "read-more": "Read More",
+  "contactHeroDesc1": "Have questions or want to start a project? We'd love to hear from you.",
+  "contactHeroDesc2": "Let's collaborate and create something amazing together. Reach out today and let's turn your vision into reality.",
+  "readyToSee": "Ready to See What We Can Do?",
+  "readyToSeeDesc": "Explore our portfolio and discover how CreativeDigital brings ideas to life.",
+  "viewOurWork": "View Our Work"
 }

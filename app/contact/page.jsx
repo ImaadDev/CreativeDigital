@@ -1,11 +1,13 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ScrollBasedAnimation from '../../components/ScrollBasedAnimation';
 import ContactHero from '../../components/contact/ContactHero';
 import Contact from '../../components/home/Contact';
 import CTAWork from '../../components/contact/CTAWork';
+import Loading from '../../components/Loading';
 
 const ContactPage = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -23,6 +25,18 @@ const ContactPage = () => {
     alert('Message sent!');
     setFormData({ name: '', email: '', message: '' });
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1400); // 1.4 seconds loading
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <main className="bg-black text-white w-full min-h-screen">

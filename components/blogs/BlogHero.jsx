@@ -1,8 +1,11 @@
 'use client';
 import React from 'react';
 import ScrollBasedAnimation from '../ScrollBasedAnimation';
+import { useTranslation } from 'react-i18next';
 
 const BlogHero = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="relative w-full h-[700px] overflow-hidden text-white">
 
@@ -25,17 +28,17 @@ const BlogHero = () => {
         {/* Heading */}
         <ScrollBasedAnimation direction="up" offset={70} delay={0}>
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight max-w-3xl md:max-w-4xl">
-            Our <span className="text-accent">Blog</span>
+            {t("ourBlog")}
           </h1>
         </ScrollBasedAnimation>
 
         {/* Subheading */}
         <ScrollBasedAnimation direction="up" offset={70} delay={0.2}>
           <p className="text-lg sm:text-xl md:text-2xl max-w-3xl mb-4 md:mb-6 opacity-90">
-            Insights and innovations from CreativeDigital.
+            {t("blogHeroDesc1")}
           </p>
           <p className="text-md sm:text-lg md:text-xl max-w-3xl text-gray-300 leading-relaxed">
-            Stay updated with the latest trends, tips, and stories from the world of digital transformation.
+            {t("blogHeroDesc2")}
           </p>
         </ScrollBasedAnimation>
 

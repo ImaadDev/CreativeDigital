@@ -14,12 +14,11 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   const links = [
-        { label: t('home'), href: '/' },
+    { label: t('home'), href: '/' },
     { label: t('about'), href: '/about' },
     { label: t('nav-service'), href: '/services' },
-    { label: t('ourWork'), href: '/work' },
-        { label: t('blogs'), href: '/blogs' },
-
+    { label: t('navWork'), href: '/work' },
+    { label: t('blogs'), href: '/blogs' },
     { label: t('contact'), href: '/contact' },
   ];
 
