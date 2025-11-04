@@ -3,6 +3,7 @@ import React from 'react';
 import { Cpu, Activity, Camera, Users, Calendar, Edit, Monitor } from 'lucide-react';
 import ScrollBasedAnimation from '../ScrollBasedAnimation';
 import { useTranslation } from 'react-i18next';
+import Link from 'next/link';
 
 const ServiceCard = ({ service, index }) => {
   return (
@@ -87,9 +88,9 @@ const Services = () => {
       {/* View All Button */}
       <div className="text-center mt-12">
         <ScrollBasedAnimation direction="up" offset={50}>
-          <button className="bg-[#6EFF33] text-black font-semibold px-8 py-3 text-lg hover:bg-transparent hover:text-[#6EFF33] border-2 border-[#6EFF33] transition-all duration-300">
+          <Link href='/services' className="bg-[#6EFF33] pointer-cursor text-black font-semibold px-8 py-3 text-lg hover:bg-transparent hover:text-[#6EFF33] border-2 border-[#6EFF33] transition-all duration-300">
             {t("viewAllServices")}
-          </button>
+          </Link>
         </ScrollBasedAnimation>
       </div>
     </section>
