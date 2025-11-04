@@ -22,12 +22,29 @@ const Navbar = () => {
     { label: t('contact'), href: '/contact' },
   ];
 
+  useEffect(() => {
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  window.addEventListener('scroll', handleScroll);
+  return () => window.removeEventListener('scroll', handleScroll);
+}, []);
+
+
   return (
-    <nav
-      className='navbar-container relative top-0 left-0 w-full z-50 transition-all duration-500 bg-black/50'
-    >
+   <nav
+  className={`navbar-container fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+    scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+  }`}
+>
+
       <div className="max-w-7xl mx-auto py-2 px-4 md:px-6">
-        <div className="flex justify-between items-center h-20 lg:h-24">
+        <div className="flex justify-between items-center h-20 lg:h-20">
         {/* ---------- Logo ---------- */}
 <ScrollBasedAnimation direction="up" offset={50} delay={0}>
   <Link href="/" className="flex items-center gap-3 leading-none group">
@@ -35,9 +52,9 @@ const Navbar = () => {
     <Image
       src="/logo.png" // replace with your image path or URL
       alt="Logo"
-      width={160}
-      height={160}
-      className="w-25 h-25 md:w-40 md:h-40 object-contain"
+      width={140}
+      height={140}
+      className="w-25 h-25 md:w-36 md:h-36 object-contain"
     />
   </Link>
 </ScrollBasedAnimation>
