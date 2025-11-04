@@ -10,13 +10,22 @@ export default function LanguageSwitcher({ isMobile = false }) {
   const [isOpen, setIsOpen] = useState(false);
   const isRTL = i18n.language === 'ar';
 
-  // Load saved language from localStorage (if available)
+  // Load saved language from localStorage (if available), otherwise default to Arabic
   useEffect(() => {
     const savedLang = localStorage.getItem('language');
-    if (savedLang && savedLang !== i18n.language) {
-      i18n.changeLanguage(savedLang);
-      document.documentElement.lang = savedLang;
-      document.documentElement.dir = savedLang === 'ar' ? 'rtl' : 'ltr';
+    if (savedLang) {
+      if (savedLang !== i18n.language) {
+        i18n.changeLanguage(savedLang);
+        document.documentElement.lang = savedLang;
+        document.documentElement.dir = savedLang === 'ar' ? 'rtl' : 'ltr';
+      }
+    } else {
+      // No saved language, ensure Arabic is set as default
+      if (i18n.language !== 'ar') {
+        i18n.changeLanguage('ar');
+      }
+      document.documentElement.lang = 'ar';
+      document.documentElement.dir = 'rtl';
     }
   }, [i18n]);
 

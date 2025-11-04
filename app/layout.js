@@ -30,16 +30,16 @@ export const metadata = {
   },
   openGraph: {
     type: 'website',
-    locale: 'en_US',
-    alternateLocale: 'ar_SA',
-    title: "CreativeDigital - Digital Solutions & Web Development",
-    description: "Professional digital marketing, web development, and creative solutions.",
+    locale: 'ar_SA',
+    alternateLocale: 'en_US',
+    title: "CreativeDigital - حلول رقمية وتطوير مواقع",
+    description: "تسويق رقمي احترافي، تطوير مواقع، وحلول إبداعية. حوّل أعمالك مع فريقنا المتخصص من المصممين والمطورين.",
     siteName: "CreativeDigital",
   },
   twitter: {
     card: 'summary_large_image',
-    title: "CreativeDigital - Digital Solutions & Web Development",
-    description: "Professional digital marketing, web development, and creative solutions.",
+    title: "CreativeDigital - حلول رقمية وتطوير مواقع",
+    description: "تسويق رقمي احترافي، تطوير مواقع، وحلول إبداعية. حوّل أعمالك مع فريقنا المتخصص من المصممين والمطورين.",
     creator: '@CreativeDigital',
   },
   robots: {
@@ -64,7 +64,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" dir="ltr">
+    <html lang="ar" dir="rtl">
       <head>
         {/* Arabic SEO Meta Tags */}
         <meta name="description" content="تسويق رقمي احترافي، تطوير مواقع، وحلول إبداعية. حوّل أعمالك مع فريقنا المتخصص من المصممين والمطورين." />
