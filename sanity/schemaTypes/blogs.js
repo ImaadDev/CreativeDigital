@@ -5,7 +5,13 @@ export default {
   fields: [
     {
       name: "title",
-      title: "Title",
+      title: "Title (English)",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "titleAr",
+      title: "Title (Arabic)",
       type: "string",
       validation: (Rule) => Rule.required(),
     },
@@ -67,13 +73,62 @@ export default {
     },
     {
       name: "introduction",
-      title: "Introduction",
+      title: "Introduction (English)",
+      type: "text",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "introductionAr",
+      title: "Introduction (Arabic)",
       type: "text",
       validation: (Rule) => Rule.required(),
     },
     {
       name: "sections",
-      title: "Sections",
+      title: "Sections (English)",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "title",
+              title: "Title (English)",
+              type: "string",
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: "titleAr",
+              title: "Title (Arabic)",
+              type: "string",
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: "content",
+              title: "Content (English)",
+              type: "text",
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: "contentAr",
+              title: "Content (Arabic)",
+              type: "text",
+              validation: (Rule) => Rule.required(),
+            },
+          ],
+          preview: {
+            select: {
+              title: "title",
+              subtitle: "content",
+            },
+          },
+        },
+      ],
+      validation: (Rule) => Rule.min(1).warning("Add at least one section"),
+    },
+    {
+      name: "sectionsAr",
+      title: "Sections (Arabic)",
       type: "array",
       of: [
         {
@@ -118,7 +173,13 @@ export default {
     },
     {
       name: "conclusion",
-      title: "Conclusion",
+      title: "Conclusion (English)",
+      type: "text",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "conclusionAr",
+      title: "Conclusion (Arabic)",
       type: "text",
       validation: (Rule) => Rule.required(),
     },

@@ -4,6 +4,7 @@ import ScrollBasedAnimation from '../../components/ScrollBasedAnimation';
 import AboutHero from '@/components/about/AboutHero';
 import AboutContent from '@/components/about/AboutContent';
 import AboutWhyUs from '@/components/about/AboutWhyUs';
+import AboutTeam from '@/components/about/AboutTeam';
 import Loading from '../../components/Loading';
 
 const AboutPage = () => {
@@ -26,6 +27,7 @@ const AboutPage = () => {
     <AboutHero/>
     <AboutContent/>
     <AboutWhyUs/>
+    <AboutTeam/>
     </>
   );
 };

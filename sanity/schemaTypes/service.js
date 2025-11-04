@@ -7,13 +7,25 @@ export default {
   fields: [
     {
       name: "title",
-      title: "Title",
+      title: "Title (English)",
+      type: "string",
+      validation: Rule => Rule.required(),
+    },
+    {
+      name: "titleAr",
+      title: "Title (Arabic)",
       type: "string",
       validation: Rule => Rule.required(),
     },
     {
       name: "description",
-      title: "Description",
+      title: "Description (English)",
+      type: "text",
+      validation: Rule => Rule.required(),
+    },
+    {
+      name: "descriptionAr",
+      title: "Description (Arabic)",
       type: "text",
       validation: Rule => Rule.required(),
     },

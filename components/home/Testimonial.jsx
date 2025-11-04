@@ -7,7 +7,8 @@ import { groq } from 'next-sanity';
 import { useTranslation } from 'react-i18next';
 
 const Testimonials = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language === 'ar';
   const [testimonialsData, setTestimonialsData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -17,8 +18,11 @@ const Testimonials = () => {
         *[_type == "testimonial"] {
           _id,
           name,
+          nameAr,
           role,
+          roleAr,
           feedback,
+          feedbackAr,
           image{
             asset->{
               url
@@ -38,6 +42,8 @@ const Testimonials = () => {
 
     fetchTestimonials();
   }, []);
+
+
 
   // Auto-slide functionality
   useEffect(() => {
@@ -110,16 +116,16 @@ const Testimonials = () => {
                     <ScrollBasedAnimation direction="up" offset={50} delay={0.1}>
                       <div className="bg-[#0a0a0a] border-2 border-[#1a1a1a] p-8 md:p-12 mx-auto max-w-2xl">
                         {/* Header with User Info */}
-                        <div className="flex items-start gap-4 mb-6 pb-6 border-b-2 border-[#1a1a1a]">
+                        <div className={`flex items-start gap-4 mb-6 pb-6 border-b-2 border-[#1a1a1a] ${isArabic ? 'flex-row-reverse' : ''}`}>
                           <img
                             src={testimonial.image?.asset?.url || '/placeholder.jpg'}
-                            alt={testimonial.name}
+                            alt={isArabic ? testimonial.nameAr : testimonial.name}
                             className="w-12 h-12 object-cover"
                             style={{ clipPath: 'circle(50%)' }}
                           />
                           <div className="flex-1">
-                            <h4 className="text-white font-semibold text-lg">{testimonial.name}</h4>
-                            <p className="text-gray-400 text-sm mt-1">{testimonial.role}</p>
+                            <h4 className="text-white font-semibold text-lg">{isArabic ? (testimonial.nameAr || testimonial.name) : testimonial.name}</h4>
+                            <p className="text-gray-400 text-sm mt-1">{isArabic ? (testimonial.roleAr || testimonial.role) : testimonial.role}</p>
                           </div>
                           {/* Rating */}
                           <div className="flex items-center gap-1">
@@ -130,8 +136,8 @@ const Testimonials = () => {
                         </div>
 
                         {/* Feedback */}
-                        <blockquote className="text-gray-300 text-base md:text-lg leading-relaxed">
-                          {testimonial.feedback}
+                        <blockquote className={`text-gray-300 text-base md:text-lg leading-relaxed ${isArabic ? 'text-right' : 'text-left'}`}>
+                          {isArabic ? (testimonial.feedbackAr || testimonial.feedback) : testimonial.feedback}
                         </blockquote>
 
                         {/* Google-like timestamp */}

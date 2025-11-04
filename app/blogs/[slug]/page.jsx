@@ -1,5 +1,6 @@
 'use client';
 import { use, useEffect, useState } from 'react';
+import Link from 'next/link';
 import { client } from '@/sanity/lib/client';
 import { groq } from 'next-sanity';
 import BlogDetailsHero from '@/components/blogs/BlogDetailsHero';
@@ -22,12 +23,16 @@ useEffect(() => {
         *[_type == "blogs" && slug.current == $slug][0]{
           _id,
           title,
+          titleAr,
           "slug": slug.current,
           category,
           publishedAt,
           introduction,
+          introductionAr,
           sections,
+          sectionsAr,
           conclusion,
+          conclusionAr,
           images[]{
             asset->{url}
           }
@@ -47,6 +52,7 @@ useEffect(() => {
           *[_type == "blogs"] | order(publishedAt desc) {
             _id,
             title,
+            titleAr,
             "slug": slug.current,
             publishedAt
           }
@@ -87,14 +93,14 @@ useEffect(() => {
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Blog Not Found</h1>
           <p className="text-gray-400 mb-8">
-            The blog you're looking for doesn't exist or was removed.
+            The blog you are looking for does not exist or was removed.
           </p>
-          <a
+          <Link
             href="/blogs"
             className="bg-accent text-black px-6 py-3 rounded-lg font-semibold hover:bg-green-500 transition-colors"
           >
             Back to Blogs
-          </a>
+          </Link>
         </div>
       </div>
     );

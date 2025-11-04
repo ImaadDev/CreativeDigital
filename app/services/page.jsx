@@ -16,7 +16,9 @@ export default function ServicesPage() {
         const data = await client.fetch(`*[_type == "service"]{
           _id,
           title,
+          titleAr,
           description,
+          descriptionAr,
           image
         }`);
         setServicesData(data);

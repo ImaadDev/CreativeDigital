@@ -5,7 +5,13 @@ export default {
   fields: [
     {
       name: "title",
-      title: "Title",
+      title: "Title (English)",
+      type: "string",
+      validation: Rule => Rule.required(),
+    },
+    {
+      name: "titleAr",
+      title: "Title (Arabic)",
       type: "string",
       validation: Rule => Rule.required(),
     },

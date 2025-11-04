@@ -5,19 +5,37 @@ export default {
   fields: [
     {
       name: "name",
-      title: "Name",
+      title: "Name (English)",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "nameAr",
+      title: "Name (Arabic)",
       type: "string",
       validation: (Rule) => Rule.required(),
     },
     {
       name: "role",
-      title: "Role",
+      title: "Role (English)",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "roleAr",
+      title: "Role (Arabic)",
       type: "string",
       validation: (Rule) => Rule.required(),
     },
     {
       name: "feedback",
-      title: "Feedback",
+      title: "Feedback (English)",
+      type: "text",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "feedbackAr",
+      title: "Feedback (Arabic)",
       type: "text",
       validation: (Rule) => Rule.required(),
     },

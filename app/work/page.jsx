@@ -9,6 +9,7 @@ import WorkHero from '../../components/work/WorkHero';
 import Loading from '../../components/Loading';
 import { client } from '../../sanity/lib/client';
 import { urlFor } from '../../sanity/lib/image';
+import { useTranslation } from 'react-i18next';
 
 const NextArrow = ({ onClick }) => (
   <button onClick={onClick} className="absolute right-6 top-1/2 -translate-y-1/2 z-20 text-[#6EFF33] hover:text-white transition-colors duration-200">
@@ -23,6 +24,8 @@ const PrevArrow = ({ onClick }) => (
 );
 
 const Work = () => {
+  const { i18n } = useTranslation();
+  const isArabic = i18n.language === 'ar';
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -44,6 +47,7 @@ const Work = () => {
         const data = await client.fetch(`*[_type == "work"]{
           _id,
           title,
+          titleAr,
           "thumbnail": thumbnail.asset->url,
           "gallery": gallery[].asset->url
         }`);
@@ -91,14 +95,14 @@ const Work = () => {
               >
                 <Image
                   src={project.thumbnail}
-                  alt={project.title}
+                  alt={isArabic ? project.titleAr : project.title}
                   width={500}
                   height={400}
                   className="w-full h-[320px] object-cover transition-transform duration-700 group-hover:scale-110 opacity-90"
                 />
                 <div className="absolute inset-0 bg-black/50 group-hover:bg-black/70 transition-all duration-500 flex items-center justify-center">
                   <h3 className="text-white text-2xl font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    {project.title}
+                    {isArabic ? project.titleAr : project.title}
                   </h3>
                 </div>
               </div>
@@ -130,7 +134,7 @@ const Work = () => {
                 transition={{ delay: 0.2 }}
                 className="text-3xl md:text-4xl font-bold text-[#6EFF33] mb-6 text-center"
               >
-                {selectedProject.title}
+                {isArabic ? selectedProject.titleAr : selectedProject.title}
               </motion.h2>
 
               <motion.div
@@ -144,7 +148,7 @@ const Work = () => {
                     <div key={i} className="flex justify-center">
                       <Image
                         src={img}
-                        alt={`${selectedProject.title} image ${i + 1}`}
+                        alt={`${isArabic ? selectedProject.titleAr : selectedProject.title} image ${i + 1}`}
                         width={1200}
                         height={700}
                         className="object-cover max-h-[75vh] mx-auto"

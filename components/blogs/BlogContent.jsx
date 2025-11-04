@@ -10,7 +10,8 @@ import { useTranslation } from 'react-i18next';
 
 
 const BlogContent = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language === 'ar';
   const [blogs, setBlogs] = useState([]);
 
   // 🔹 Fetch blogs from Sanity
@@ -20,8 +21,10 @@ const BlogContent = () => {
         *[_type == "blogs"] | order(publishedAt desc) {
           _id,
           title,
+          titleAr,
           slug,
           introduction,
+          introductionAr,
           category,
           publishedAt,
           images[0]{
@@ -84,7 +87,7 @@ const BlogContent = () => {
               <div className="relative h-48 overflow-hidden flex-shrink-0">
                 <Image
                   src={blog.images?.asset?.url || '/placeholder.jpg'}
-                  alt={blog.title}
+                  alt={isArabic ? blog.titleAr : blog.title}
                   fill
                   style={{ objectFit: 'cover' }}
                   className="transition-transform duration-300 hover:scale-110"
@@ -98,10 +101,10 @@ const BlogContent = () => {
                   <span>{new Date(blog.publishedAt).toLocaleDateString()}</span>
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3 line-clamp-2 flex-shrink-0">
-                  {blog.title}
+                  {isArabic ? blog.titleAr : blog.title}
                 </h3>
                 <p className="text-gray-300 text-sm leading-relaxed mb-4 line-clamp-3 flex-grow">
-                  {blog.introduction}
+                  {isArabic ? blog.introductionAr : blog.introduction}
                 </p>
                 <div className="mt-auto">
                   <Link

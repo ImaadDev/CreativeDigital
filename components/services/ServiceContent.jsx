@@ -5,15 +5,16 @@ import ScrollBasedAnimation from '../ScrollBasedAnimation';
 import { Minus } from 'lucide-react';
 import { urlFor } from '../../sanity/lib/image';
 import Image from 'next/image';
+import { useTranslation } from 'react-i18next';
 
-const ServiceCard = ({ service, index }) => (
+const ServiceCard = ({ service, index, isArabic }) => (
   <ScrollBasedAnimation direction="up" offset={50} delay={0.2 * index}>
     <div className="bg-secondary group overflow-hidden duration-500 cursor-pointer">
       {/* Image Section */}
       <div className="relative h-64 sm:h-72 md:h-80 overflow-hidden">
         <Image
           src={urlFor(service.image).width(800).url()}
-          alt={service.title}
+          alt={isArabic ? service.titleAr : service.title}
           width={800}
           height={600}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -28,9 +29,9 @@ const ServiceCard = ({ service, index }) => (
             <Minus className="w-4 h-4 text-[#6EFF33]" />
           </div>
           <h3 className="text-white text-xl sm:text-2xl font-bold mb-2 group-hover:text-[#6EFF33] transition-colors duration-500">
-            {service.title}
+            {isArabic ? service.titleAr : service.title}
           </h3>
-          <p className="text-gray-400 text-sm md:text-base">{service.description}</p>
+          <p className="text-gray-400 text-sm md:text-base">{isArabic ? service.descriptionAr : service.description}</p>
         </div>
       </div>
     </div>
@@ -38,11 +39,14 @@ const ServiceCard = ({ service, index }) => (
 );
 
 export default function ServicesPageContent({ servicesData }) {
+  const { i18n } = useTranslation();
+  const isArabic = i18n.language === 'ar';
+
   return (
     <section className="bg-black/70 py-16 sm:py-20 lg:py-32 z-30 relative">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-8 lg:px-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
         {servicesData.map((service, index) => (
-          <ServiceCard key={service._id} service={service} index={index} />
+          <ServiceCard key={service._id} service={service} index={index} isArabic={isArabic} />
         ))}
       </div>
     </section>
