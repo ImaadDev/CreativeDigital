@@ -12,13 +12,17 @@ const ServiceCard = ({ service, index, isArabic }) => (
     <div className="bg-secondary group overflow-hidden duration-500 cursor-pointer">
       {/* Image Section */}
       <div className="relative h-64 sm:h-72 md:h-80 overflow-hidden">
-        <Image
-          src={urlFor(service.image).width(800).url()}
-          alt={isArabic ? service.titleAr : service.title}
-          width={800}
-          height={600}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
+       <Image
+  src={urlFor(service.image).width(800).url()}
+  alt={
+    isArabic
+      ? service.titleAr || 'Service Image'
+      : service.title || 'Service Image'
+  }
+  width={800}
+  height={600}
+  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+/>
         <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-500"></div>
       </div>
 

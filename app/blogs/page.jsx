@@ -1,31 +1,33 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import ScrollBasedAnimation from '../../components/ScrollBasedAnimation';
-import BlogHero from '@/components/blogs/BlogHero';
-import BlogContent from '@/components/blogs/BlogContent';
-import Loading from '../../components/Loading';
+import BlogsClient from './BlogsClient';
 
-const BlogPage = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1300); // 1.3 seconds loading
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  return (
-    <>
-    <BlogHero/>
-    <BlogContent/>
-    </>
-  );
+export const metadata = {
+  title: "Blog - Digital Marketing & Web Development Insights",
+  description: "Stay updated with the latest trends in web development, digital marketing, UI/UX design, and technology. Expert insights and tutorials from CreativeDigital team.",
+  keywords: ["blog", "web development blog", "digital marketing tips", "UI/UX design", "technology trends", "SEO blog", "مدونة", "مدونة تطوير مواقع", "نصائح التسويق الرقمي", "تصميم واجهات", "اتجاهات التكنولوجيا", "مدونة تحسين محركات البحث"],
+  openGraph: {
+    title: "Blog - Digital Marketing & Web Development Insights",
+    description: "Stay updated with the latest trends in web development, digital marketing, UI/UX design, and technology.",
+    type: "website",
+    locale: "en_US",
+    alternateLocale: "ar_SA",
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Blog - Digital Marketing & Web Development Insights",
+    description: "Stay updated with the latest trends in web development, digital marketing, UI/UX design, and technology.",
+  },
+  alternates: {
+    canonical: '/blogs',
+  },
+  other: {
+    // Arabic metadata
+    'og:title:ar': 'المدونة - رؤى التسويق الرقمي وتطوير المواقع',
+    'og:description:ar': 'ابق على اطلاع بأحدث الاتجاهات في تطوير المواقع، التسويق الرقمي، تصميم واجهات المستخدم، والتكنولوجيا. رؤى ودروس من فريق CreativeDigital.',
+    'twitter:title:ar': 'المدونة - رؤى التسويق الرقمي وتطوير المواقع',
+    'twitter:description:ar': 'ابق على اطلاع بأحدث الاتجاهات في تطوير المواقع، التسويق الرقمي، تصميم واجهات المستخدم، والتكنولوجيا.',
+  },
 };
 
-export default BlogPage;
+export default function BlogPage() {
+  return <BlogsClient />;
+}

@@ -1,168 +1,33 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
-import Slider from 'react-slick';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import ScrollBasedAnimation from '../../components/ScrollBasedAnimation';
-import WorkHero from '../../components/work/WorkHero';
-import Loading from '../../components/Loading';
-import { client } from '../../sanity/lib/client';
-import { urlFor } from '../../sanity/lib/image';
-import { useTranslation } from 'react-i18next';
+import WorkClient from './WorkClient';
 
-const NextArrow = ({ onClick }) => (
-  <button onClick={onClick} className="absolute right-6 top-1/2 -translate-y-1/2 z-20 text-[#6EFF33] hover:text-white transition-colors duration-200">
-    <ChevronRight size={42} />
-  </button>
-);
-
-const PrevArrow = ({ onClick }) => (
-  <button onClick={onClick} className="absolute left-6 top-1/2 -translate-y-1/2 z-20 text-[#6EFF33] hover:text-white transition-colors duration-200">
-    <ChevronLeft size={42} />
-  </button>
-);
-
-const Work = () => {
-  const { i18n } = useTranslation();
-  const isArabic = i18n.language === 'ar';
-  const [projects, setProjects] = useState([]);
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const closeGallery = () => setSelectedProject(null);
-
-  useEffect(() => {
-    const handleKey = (e) => {
-      if (e.key === 'Escape') closeGallery();
-    };
-    window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
-  }, []);
-
-  // 🔹 Fetch projects from Sanity
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const data = await client.fetch(`*[_type == "work"]{
-          _id,
-          title,
-          titleAr,
-          "thumbnail": thumbnail.asset->url,
-          "gallery": gallery[].asset->url
-        }`);
-        setProjects(data);
-        setTimeout(() => setIsLoading(false), 1200); // 1.2 seconds loading
-      } catch (err) {
-        console.error('Failed to fetch projects:', err);
-        setIsLoading(false);
-      }
-    };
-    fetchProjects();
-  }, []);
-
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 600,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3500,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    pauseOnHover: true,
-    appendDots: (dots) => <div><ul className="!m-0 flex justify-center gap-2 mt-4">{dots}</ul></div>,
-    customPaging: () => <div className="w-3 h-3 rounded-full bg-gray-400 hover:bg-[#6EFF33] transition-all" />,
-  };
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (!projects.length) return <p className="text-white text-center py-20">No projects found.</p>;
-
-  return (
-    <>
-      <WorkHero />
-      <section className="py-20 px-8 md:px-12 bg-black/70 relative z-30 w-full">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, index) => (
-            <ScrollBasedAnimation key={project._id} direction="up" offset={80} delay={index * 0.1}>
-              <div
-                onClick={() => setSelectedProject(project)}
-                className="group relative cursor-pointer overflow-hidden"
-              >
-                <Image
-                  src={project.thumbnail}
-                  alt={isArabic ? project.titleAr : project.title}
-                  width={500}
-                  height={400}
-                  className="w-full h-[320px] object-cover transition-transform duration-700 group-hover:scale-110 opacity-90"
-                />
-                <div className="absolute inset-0 bg-black/50 group-hover:bg-black/70 transition-all duration-500 flex items-center justify-center">
-                  <h3 className="text-white text-2xl font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    {isArabic ? project.titleAr : project.title}
-                  </h3>
-                </div>
-              </div>
-            </ScrollBasedAnimation>
-          ))}
-        </div>
-
-        {/* Fullscreen Gallery Modal */}
-        <AnimatePresence>
-          {selectedProject && (
-            <motion.div
-              className="fixed inset-0 bg-black/90 backdrop-blur-sm z-60 flex flex-col items-center justify-center"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-            >
-              <button
-                onClick={closeGallery}
-                className="absolute top-6 right-6 text-white hover:text-[#6EFF33] transition-colors duration-200"
-                aria-label="Close Gallery"
-              >
-                <X size={38} />
-              </button>
-
-              <motion.h2
-                initial={{ y: -20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="text-3xl md:text-4xl font-bold text-[#6EFF33] mb-6 text-center"
-              >
-                {isArabic ? selectedProject.titleAr : selectedProject.title}
-              </motion.h2>
-
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="relative w-full max-w-5xl px-0"
-              >
-                <Slider {...sliderSettings}>
-                  {selectedProject.gallery.map((img, i) => (
-                    <div key={i} className="flex justify-center">
-                      <Image
-                        src={img}
-                        alt={`${isArabic ? selectedProject.titleAr : selectedProject.title} image ${i + 1}`}
-                        width={1200}
-                        height={700}
-                        className="object-cover max-h-[75vh] mx-auto"
-                      />
-                    </div>
-                  ))}
-                </Slider>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </section>
-    </>
-  );
+export const metadata = {
+  title: "Our Portfolio - CreativeDigital Projects & Work",
+  description: "Explore our portfolio of successful web development, UI/UX design, and digital marketing projects. See how we've helped businesses transform their online presence.",
+  keywords: ["portfolio", "web development projects", "UI/UX design portfolio", "digital marketing case studies", "creative work", "معرض أعمال", "مشاريع تطوير مواقع", "معرض تصميم واجهات", "دراسات حالة تسويق رقمي", "أعمال إبداعية"],
+  openGraph: {
+    title: "Our Portfolio - CreativeDigital Projects & Work",
+    description: "Explore our portfolio of successful web development, UI/UX design, and digital marketing projects.",
+    type: "website",
+    locale: "en_US",
+    alternateLocale: "ar_SA",
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Our Portfolio - CreativeDigital Projects & Work",
+    description: "Explore our portfolio of successful web development, UI/UX design, and digital marketing projects.",
+  },
+  alternates: {
+    canonical: '/work',
+  },
+  other: {
+    // Arabic metadata
+    'og:title:ar': 'معرض أعمالنا - مشاريع CreativeDigital',
+    'og:description:ar': 'استكشف معرض أعمالنا من المشاريع الناجحة في تطوير المواقع، تصميم واجهات المستخدم، والتسويق الرقمي. شاهد كيف ساعدنا الشركات في تحويل وجودها عبر الإنترنت.',
+    'twitter:title:ar': 'معرض أعمالنا - مشاريع CreativeDigital',
+    'twitter:description:ar': 'استكشف معرض أعمالنا من المشاريع الناجحة في تطوير المواقع، تصميم واجهات المستخدم، والتسويق الرقمي.',
+  },
 };
 
-export default Work;
+export default function WorkPage() {
+  return <WorkClient />;
+}
