@@ -43,7 +43,7 @@ const Navbar = () => {
   }`}
 >
 
-      <div className="max-w-7xl mx-auto py-2 px-4 md:px-6">
+      <div className="max-w-7xl mx-auto py-4 px-8 md:px-6">
         <div className="flex justify-between items-center h-20 lg:h-20">
         {/* ---------- Logo ---------- */}
 <ScrollBasedAnimation direction="up" offset={50} delay={0}>
@@ -54,7 +54,7 @@ const Navbar = () => {
       alt="Logo"
       width={140}
       height={140}
-      className="w-25 h-25 md:w-36 md:h-36 object-contain"
+      className="w-20 h-20 md:w-36 md:h-36 object-contain"
     />
   </Link>
 </ScrollBasedAnimation>
