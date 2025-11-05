@@ -1,37 +1,139 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CreativeDigital - Digital Solutions & Web Development
 
-## Getting Started
+A modern, responsive website for CreativeDigital, a digital marketing and web development agency. Built with Next.js, featuring internationalization (Arabic/English), Sanity CMS integration, and optimized for SEO and performance.
 
-First, run the development server:
+## 🌐 Live Website
 
+Visit us at: [www.creativeedigital.com](https://www.creativeedigital.com)
+
+## ✨ Features
+
+- **Multilingual Support**: Arabic (RTL) and English languages
+- **CMS Integration**: Powered by Sanity for content management
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **SEO Optimized**: Meta tags, sitemap, robots.txt, and Open Graph
+- **Performance Focused**: Optimized images, lazy loading, and fast loading times
+- **Contact Forms**: Integrated email sending with Resend
+- **Animations**: Smooth scroll-based animations with Framer Motion
+- **Blog System**: Dynamic blog posts with Sanity CMS
+- **Portfolio Showcase**: Work samples and testimonials
+
+## 🛠 Tech Stack
+
+- **Framework**: Next.js 16
+- **Styling**: Tailwind CSS
+- **CMS**: Sanity
+- **Internationalization**: react-i18next
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Email**: Resend
+- **Deployment**: Vercel
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+- Sanity account and project
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/creativeedigital.git
+cd creativeedigital
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+3. Set up environment variables:
+Create a `.env.local` file with:
+```env
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_sanity_project_id
+NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_SANITY_API_VERSION=2025-11-02
+RESEND_API_KEY=your_resend_api_key
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Configure Sanity:
+```bash
+npm run sanity
+```
 
-## Learn More
+5. Run the development server:
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open [http://localhost:3000](http://localhost:3000) to view the website.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📝 Available Scripts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run translate:ar` - Generate Arabic translations
 
-## Deploy on Vercel
+## 🏗 Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+creativeedigital/
+├── app/                    # Next.js app directory
+│   ├── api/               # API routes
+│   ├── blogs/             # Blog pages
+│   ├── contact/           # Contact page
+│   ├── services/          # Services page
+│   ├── work/              # Portfolio page
+│   └── layout.js          # Root layout
+├── components/            # React components
+│   ├── home/              # Homepage components
+│   ├── blogs/             # Blog components
+│   └── ...                # Other components
+├── lib/                   # Utility libraries
+├── sanity/                # Sanity configuration
+│   ├── schemaTypes/       # Content schemas
+│   └── lib/               # Sanity client
+├── public/                # Static assets
+└── utils/                 # Helper functions
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# CreativeDigital
+## 🌍 Internationalization
+
+The website supports Arabic and English languages:
+
+- Arabic content is stored in `public/locales/ar/common.json`
+- English content is stored in `public/locales/en/common.json`
+- RTL support for Arabic layout
+
+## 📧 Contact
+
+For inquiries: hello@creativeedigital.com
+
+## 🚀 Deployment
+
+The project is optimized for Vercel deployment:
+
+1. Connect your GitHub repository to Vercel
+2. Add environment variables in Vercel dashboard
+3. Deploy automatically on push
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
+
+## 📄 License
+
+This project is private and proprietary to CreativeDigital.
+
+## 👨‍💻 Developed by
+
+[Imad Hussain Khan](https://www.imadkhan.online) - CreativeDigital Team
