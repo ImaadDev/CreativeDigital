@@ -1,5 +1,7 @@
 import AboutClient from './AboutClient';
 
+export const dynamic = "force-static";
+
 export const metadata = {
   title: "About Us - CreativeDigital Team & Story",
   description: "Learn about CreativeDigital's journey, our expert team of designers and developers, and our commitment to delivering exceptional digital solutions.",

@@ -19,6 +19,7 @@ const isRTL = i18n.language === 'ar';
         loop
         muted
         playsInline
+        preload="metadata"
       />
 
       {/* Dark Overlay */}

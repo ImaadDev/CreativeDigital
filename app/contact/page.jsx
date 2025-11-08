@@ -1,5 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
+
+export const dynamic = "force-static";
 import ScrollBasedAnimation from '../../components/ScrollBasedAnimation';
 import ContactHero from '../../components/contact/ContactHero';
 import Contact from '../../components/home/Contact';

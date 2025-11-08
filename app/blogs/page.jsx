@@ -1,5 +1,7 @@
 import BlogsClient from './BlogsClient';
 
+export const dynamic = "force-static";
+
 export const metadata = {
   title: "Blog - Digital Marketing & Web Development Insights",
   description: "Stay updated with the latest trends in web development, digital marketing, UI/UX design, and technology. Expert insights and tutorials from CreativeDigital team.",

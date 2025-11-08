@@ -8,6 +8,7 @@ import SocialLinkButton from "@/components/SocialLinkButton";
 const montserrat = Montserrat({
   weight: ["400", "700"],
   subsets: ["latin"],
+  display: "swap",
   variable: "--font-montserrat",
 });
 
@@ -78,6 +79,10 @@ export default function RootLayout({ children }) {
         <meta property="og:description" content="الرئيسية - تسويق رقمي احترافي وتطوير مواقع الويب في الرياض. نقدم الخدمات المتكاملة للأعمال: تصميم واجهات المستخدم، تصميم جرافيك، تطوير التجارة الإلكترونية، وتحسين محركات البحث. اكتشف أعمالنا المتميزة في المدونات وتواصل معنا لتحويل أعمالك." />
         <meta property="og:locale" content="ar_SA" />
         <meta property="og:locale:alternate" content="en_US" />
+
+        {/* Preload critical resources */}
+        <link rel="preload" href="/CreativedigitalLogo.png" as="image" />
+        <link rel="preload" href="https://res.cloudinary.com/ddpamvx3l/video/upload/v1762354614/Hero_Website_1_qzjbww.mp4" as="video" />
 
       </head>
       <body className={`${montserrat.variable} antialiased`}>

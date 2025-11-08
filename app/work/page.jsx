@@ -1,5 +1,7 @@
 import WorkClient from './WorkClient';
 
+export const dynamic = "force-static";
+
 export const metadata = {
   title: "Our Portfolio - CreativeDigital Projects & Work",
   description: "Explore our portfolio of successful web development, UI/UX design, and digital marketing projects. See how we've helped businesses transform their online presence.",

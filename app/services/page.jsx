@@ -1,6 +1,8 @@
 // app/services/page.js
 import ServicesClient from './ServicesClient';
 
+export const dynamic = "force-static";
+
 export const metadata = {
   title: "Our Services - Web Development & Digital Marketing",
   description: "Explore our comprehensive digital services including web development, UI/UX design, digital marketing, and creative solutions. Transform your business with our expert team.",
